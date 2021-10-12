@@ -1,3 +1,5 @@
+import {getResource} from '../services/services';
+
 function cards() {
   //  Классы для карточек
 
@@ -9,7 +11,7 @@ function cards() {
       this.descr = descr;
       this.price = price;
       this.classes = classes;
-      this.parent = document.querySelector(parnetSelector);
+      this.parent = document.querySelector(parnetSelector); 
       this.transfer = 27;
       this.changeToUAH();
     }
@@ -41,24 +43,16 @@ function cards() {
 
   }
 
-  const getResource = async (url) => {
-    const res = await fetch(url);
-
-    if (!res.ok) {
-      throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-    }
-
-    return await res.json();
-  };
+ 
 
   // 1 --- Первый способ содания карточек динамически с сервера
 
-  // getResource('http://localhost:3000/menu')
-  //   .then(data => {
-  //     data.forEach(({img, altimg, title, descr, price}) => {
-  //       new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
-  //     });
-  //   });
+  getResource('http://localhost:3000/menu')
+    .then(data => {
+      data.forEach(({img, altimg, title, descr, price}) => {
+        new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
+      });
+    });
 
   // 2 --- Второй способ содания карточек динамически с сервера
 
@@ -86,18 +80,18 @@ function cards() {
 
 
       // Axios способ созания карточек
-      axios.get('http://localhost:3000/menu')
-        .then(data => {
-          data.data.forEach(({
-            img,
-            altimg,
-            title,
-            descr,
-            price
-          }) => {
-            new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
-          });
-        });
+      // axios.get('http://localhost:3000/menu')
+      //   .then(data => {
+      //     data.data.forEach(({
+      //       img,
+      //       altimg,
+      //       title,
+      //       descr,
+      //       price
+      //     }) => {
+      //       new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
+      //     });
+      //   });
 
 };
 

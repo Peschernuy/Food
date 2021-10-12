@@ -51,7 +51,7 @@ function cards() {
     return await res.json();
   };
 
-  // Первый способ содания карточек динамически с сервера
+  // 1 --- Первый способ содания карточек динамически с сервера
 
   // getResource('http://localhost:3000/menu')
   //   .then(data => {
@@ -60,7 +60,7 @@ function cards() {
   //     });
   //   });
 
-  // Второй способ содания карточек динамически с сервера
+  // 2 --- Второй способ содания карточек динамически с сервера
 
   // getResource('http://localhost:3000/menu')
   //   .then(data => createCard(data));
@@ -101,4 +101,4 @@ function cards() {
 
 };
 
-module.exports = cards;
+export default cards;
